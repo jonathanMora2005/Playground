@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Playground</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0; /* También puedes quitar el margen si lo deseas */
+        }
+
+        body, html {
+            height: 100%; /* Asegura que el cuerpo y el HTML ocupen toda la ventana */
+            overflow: hidden; /* Evita el scroll en el cuerpo y el HTML */
+        }
+        header {
+            display: flex; /* Usa flexbox */
+            justify-content: left; /* Espacio entre el texto y los botones */
+            align-items: center; /* Centra los elementos verticalmente */
+            background-color: #333; /* Cambia el color de fondo a tu preferencia */
+            color: #fff; /* Cambia el color del texto a tu preferencia */
+            padding: 20px 20px; /* Agrega relleno solo en la parte superior e inferior */
+            /* Otros estilos que desees aplicar */
+            height: 10%;
+            width: 100vw;
+
+        }
+        #html {
+            position: absolute;
+            height: 90%;
+            width: 100vw;
+            background: #3b4141;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            z-index: 1;
+
+        }
+        #js {
+            position: absolute;
+            height: 90%;
+            width: 100vw;
+            background: #3b4141;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            z-index: 0;
+        }
+        #css {
+            position: absolute;
+            height: 90%;
+            width: 100vw;
+            background: #3b4141;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            z-index: 0;
+        }
+        #output {
+            position: absolute;
+            height: 90%;
+            width: 100vw;
+            background: #ffffff;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            z-index: 0;
+        }
+        button {
+            height: 50px;
+            width: 150px; /* Ajusta el ancho según tu preferencia */
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50; /* Color de fondo verde */
+            color: white; /* Color del texto blanco */
+            margin: 5px; /* Espacio entre los botones */
+            cursor: pointer; /* Cambia el cursor al pasar sobre los botones */
+            transition: background-color 0.3s; /* Transición suave para el cambio de color de fondo */
+        }
+
+
+
+        header * {
+
+            margin-left: 60px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <header>
+        <h1>Playground</h1>
+        <div>
+            <button id="h">html</button>
+            <button id="c">css</button>
+            <button id="j">js</button>
+            <button id="r">run</button>
+
+
+        </div>
+    </header>
+    <div class="texto">
+        <textarea id="html"></textarea>
+        <textarea id="js"></textarea>
+        <textarea id="css"></textarea>
+        <iframe id="output" class="grid-container" srcdoc=""></iframe>
+    </div>
+
+</div>
+<script>
+    let textareas = document.querySelectorAll('textarea');
+    let outputFrame = document.getElementById('output');
+    let bcss = document.getElementById('c');
+    let bjs = document.getElementById('j');
+    let brun =document.getElementById('r');
+    let bhtml = document.getElementById('h');
+    let html = document.getElementById('html');
+    let js = document.getElementById('js');
+    let css = document.getElementById('css');
+    let run = document.getElementById('output');
+    console.log(bhtml)
+    bhtml.addEventListener('click',function() {
+        bhtml.style.backgroundColor = '#112800';
+        html.style.zIndex = 1;
+        bcss.style.backgroundColor = '#4CAF50';
+        css.style.zIndex = 0;
+        run.style.zIndex = 0;
+        bjs.style.backgroundColor = '#4CAF50';
+        js.style.zIndex = 0;
+    })
+
+    bcss.addEventListener('click',function() {
+        bcss.style.backgroundColor = '#112800';
+        css.style.zIndex = 1;
+        bhtml.style.backgroundColor = '#4CAF50';
+        html.style.zIndex = 0;
+        run.style.zIndex = 0;
+        bjs.style.backgroundColor = '#4CAF50';
+        js.style.zIndex = 0;
+    })
+    brun.addEventListener('click',function() {
+        bcss.style.backgroundColor = '#4CAF50';
+        css.style.zIndex = 0;
+        bhtml.style.backgroundColor = '#4CAF50';
+        html.style.zIndex = 0;
+        run.style.zIndex = 1;
+        bjs.style.backgroundColor = '#4CAF50';
+        js.style.zIndex = 0;
+    })
+
+    bjs.addEventListener('click',function() {
+        bcss.style.backgroundColor = '#4CAF50';
+        css.style.zIndex = 0;
+        bhtml.style.backgroundColor = '#4CAF50';
+        html.style.zIndex = 0;
+        run.style.zIndex = 0;
+        bjs.style.backgroundColor = '#112800';
+        js.style.zIndex = 1;
+    })
+    
+    textareas.forEach(textarea => {
+        textarea.addEventListener('input', function() {
+            updateOutput();
+        });
+    });
+
+    function updateOutput() {
+        let htmlCode = document.getElementById('html').value;
+        let jsCode = document.getElementById('js').value;
+        let cssCode = document.getElementById('css').value;
+
+
+        let code ='<!DOCTYPE html>\n' +
+            '<html lang="en">\n' +
+            '<head>\n' +
+            '<meta charset="UTF-8">\n' +
+            '<title>Code Playground</title>\n' +
+            '<style>\n' +
+            cssCode +
+            '</style>\n' +
+            '</head>\n' +
+            '<body>\n' +
+            htmlCode +
+            '<script>\n' +
+            jsCode +
+            '</' +'script>' +
+            '</body>\n' +
+            '</html>\n'
+        outputFrame.setAttribute('srcdoc',code)
+    }
+</script>
+</body>
+</html>
