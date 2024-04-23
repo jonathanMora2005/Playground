@@ -6,20 +6,21 @@
     <style>
         * {
             padding: 0;
-            margin: 0; 
+            margin: 0;
         }
 
         body, html {
-            height: 100%; 
-            overflow: hidden; 
+            height: 100%;
+            overflow: hidden;
         }
         header {
-            display: flex; 
-            justify-content: 
-            align-items: center; 
-            background-color: #333; 
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            background-color: #333;
             color: #fff;
-            padding: 20px 20px; 
+            padding: 20px 20px;
+
             height: 10%;
             width: 100vw;
 
@@ -67,7 +68,7 @@
         }
         button {
             height: 50px;
-            width: 150px; 
+            width: 100px;
             border: none;
             border-radius: 5px;
             background-color: #4CAF50;
@@ -76,9 +77,7 @@
             cursor: pointer; 
             transition: background-color 0.3s; 
         }
-
-
-
+        
         header * {
 
             margin-left: 60px;
@@ -160,7 +159,7 @@
         bjs.style.backgroundColor = '#112800';
         js.style.zIndex = 1;
     })
-    
+
     textareas.forEach(textarea => {
         textarea.addEventListener('input', function() {
             updateOutput();
